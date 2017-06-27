@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="data.Mecz" table="MECZ">
+    <id name="id" type="int">
+      <column name="ID_MECZU"/>
+      <generator class="native"/>
+    </id>
+    <property name="termin" type="java.util.GregorianCalendar">
+      <column name="TERMIN"/>
+    </property>
+    <many-to-one cascade="save-update" class="data.Stadion" column="STADION_ID" foreign-key="FK_Stadion_AD" 
+    name="Stadion" unique="false"/>
+    
+    <set lazy="true" name="druzyny" cascade="save-update">
+      <key foreign-key="FK_MECZ_DRUZYNY">
+        <column name="ID_MECZU"/>
+      </key>
+      <one-to-many class="data.Druzyna"/>
+    </set> 
+    
+    <set lazy="true" name="pozycje" cascade="save-update">
+      <key foreign-key="ID_POZYCJI">
+        <column name="ID_MECZU"/>
+      </key>
+      <one-to-many class="data.Pozycja"/>
+    </set> 
+    
+    <set lazy="true" name="statystyki" cascade="save-update">
+      <key foreign-key="FK_MECZ_STATYSTYKI">
+        <column name="ID_MECZU"/>
+      </key>
+      <one-to-many class="data.Statystyki"/>
+    </set> 
+    
+  </class>
+</hibernate-mapping>

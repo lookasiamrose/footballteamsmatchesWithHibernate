@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="data.Druzyna" table="DRUZYNY">
+    <id name="id" type="int">
+      <column name="ID_DRUZYNY"/>
+      <generator class="native"/>
+    </id>
+     <property name="kraj" type="java.lang.String">
+      <column name="KRAJ"/>
+    </property>
+    
+    <set lazy="true" name="zawodnicy" cascade="save-update">
+      <key foreign-key="ID_OSOBY">
+        <column name="ID_DRUZYNY"/>
+      </key>
+      <one-to-many class="data.Zawodnik"/>
+    </set> 
+    
+    <many-to-one name="mecz" class="data.Mecz" not-null="false" unique="true" cascade="save-update" foreign-key="ID_MECZU">
+        <column name="ID_MECZU" />
+    </many-to-one>
+    
+    <many-to-one name="trener" class="data.Trener" column="ID_OSOBY" cascade="save-update" unique="true" foreign-key="ID_TRENERA"/>
+     
+  </class>
+</hibernate-mapping>

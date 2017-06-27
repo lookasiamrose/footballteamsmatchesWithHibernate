@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="data.Pozycja" table="POZYCJE">
+    <id name="id" type="int">
+      <column name="ID_POZYCJI"/>
+      <generator class="native"/>
+    </id>
+     <property name="nazwa" type="java.lang.String">
+      <column name="NAZWA"/>
+    </property>
+    <many-to-one cascade="save-update" class="data.Zawodnik" column="ID_ZAWODNIKA" foreign-key="ID_OSOBY" 
+    name="Zawodnik" unique="false"/>
+    <many-to-one cascade="save-update" class="data.Mecz" column="ID_MECZU" foreign-key="ID_MECZU" 
+    name="Mecz" unique="false"/>
+  </class>
+</hibernate-mapping>

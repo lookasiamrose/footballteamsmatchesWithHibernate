@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="data.Statystyki" table="STATYSTYKI">
+    <id name="id" type="int">
+      <column name="ID_STATYSTYKI"/>
+      <generator class="native"/>
+    </id>
+    <property name="wartosc" type="int">
+      <column name="WARTOSC"/>
+    </property>
+    
+    <many-to-one cascade="save-update" class="data.RodzajStatystyki" column="ID_RODZAJUSTATYSTYKI" foreign-key="FK_RODZAJUSTATYSTYKI_AD" 
+    name="rodzajStatystyki" unique="false"/>
+    
+    <many-to-one cascade="save-update" class="data.Mecz" column="ID_MECZU" foreign-key="ID_MECZU" 
+    name="mecz" unique="false"/>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- Generated 2011-03-11 12:23:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+  <joined-subclass name="data.Zawodnik" extends="data.Osoba">  
+  <key column="ID_OSOBY"/>  
+    
+    <many-to-one cascade="save-update" class="data.Druzyna" column="ID_DRUZYNY" foreign-key="ID_DRUZYNY" 
+    name="Druzyna" unique="false"/>
+    
+    <many-to-one cascade="save-update" class="data.Pozycja" column="ID_POZYCJI" foreign-key="ID_POZYCJI" 
+    name="Pozycja" unique="false"/>
+    
+  </joined-subclass>
+</hibernate-mapping>
